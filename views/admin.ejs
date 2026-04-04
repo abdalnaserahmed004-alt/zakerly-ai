@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة التحكم - ذاكرلي</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .nav { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .btn { padding: 10px 20px; background: #6f42c1; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h2>أهلاً بك يا <%= user.name %> 👋</h2>
+        <a href="/chat?token=<%= token %>" class="btn">اسأل الذكاء الاصطناعي 🤖</a>
+    </div>
+
+    <h3>الكورسات المتاحة:</h3>
+    <div id="courses">
+        <% if (courses.length === 0) { %>
+            <p>لا توجد كورسات مضافة حالياً. استنّى التفعيل من الإدارة.</p>
+        <% } else { %>
+            <% courses.forEach(course => { %>
+                <div style="background:white; padding:10px; margin:10px 0; border-radius:5px;">
+                    <h4><%= course.title %></h4>
+                    <a href="/course/<%= course.id %>?token=<%= token %>">عرض الدروس</a>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>
